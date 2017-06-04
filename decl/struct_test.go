@@ -43,6 +43,30 @@ Foo struct {
 }`,
 		},
 		{
+			name: "struct with multi-line comment",
+			val: &decl.Struct{
+				Name:    "Foo",
+				Comment: "Foo is a struct\nWith a multi-line comment",
+				StructType: expression.StructType{
+					Fields: []*expression.StructField{
+						{
+							Name:    "Bar",
+							Type:    "string",
+							Comment: "Bar is a field\nWith a multi-line comment",
+						},
+					},
+				},
+			},
+			want: `type
+// Foo is a struct
+// With a multi-line comment
+Foo struct {
+// Bar is a field
+	// With a multi-line comment
+	Bar string
+}`,
+		},
+		{
 			name: "struct with tag",
 			val: &decl.Struct{
 				Name:    "Bar",
