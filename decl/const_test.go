@@ -65,5 +65,25 @@ func TestConsts(t *testing.T) {
 	bar	Alias	= "BAR"
 )`,
 		},
+		{
+			name: "group constant declaration with comments",
+			val: &decl.Const{
+				Values: []*spec.Value{
+					{
+						Comment: "foo docs",
+						Names:   []string{"foo"},
+						Type:    expression.Type("Alias"),
+						Values:  []astgen.ASTExpr{expression.StringVal("FOO")},
+					},
+					{
+						Comment: "bar multiline docs\nsecond line docs",
+						Names:   []string{"bar"},
+						Type:    expression.Type("Alias"),
+						Values:  []astgen.ASTExpr{expression.StringVal("BAR")},
+					},
+				},
+			},
+			want: "const ( \n// foo docs\n\tfoo\tAlias\t= \"FOO\"\n// bar multiline docs\n\t// second line docs\n\tbar\tAlias\t= \"BAR\"\n)",
+		},
 	})
 }

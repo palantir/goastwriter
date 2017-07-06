@@ -8,13 +8,15 @@ import (
 	"go/ast"
 
 	"github.com/palantir/goastwriter/astgen"
+	"github.com/palantir/goastwriter/comment"
 	"github.com/palantir/goastwriter/expression"
 )
 
 type Value struct {
-	Names  []string
-	Type   expression.Type
-	Values []astgen.ASTExpr
+	Comment string
+	Names   []string
+	Type    expression.Type
+	Values  []astgen.ASTExpr
 }
 
 func NewValue(name string, typ expression.Type, values ...astgen.ASTExpr) *Value {
@@ -31,6 +33,7 @@ func (v *Value) ASTSpec() ast.Spec {
 		names = append(names, ast.NewIdent(name))
 	}
 	spec := &ast.ValueSpec{
+		Doc:   comment.ToComment(v.Comment),
 		Names: names,
 	}
 	if len(v.Type) > 0 {
