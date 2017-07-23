@@ -20,7 +20,7 @@ func TestFunctions(t *testing.T) {
 			name: "simple function",
 			val: &decl.Function{
 				Name: "GetDataset",
-				FunctionType: expression.FuncType{
+				FuncType: expression.FuncType{
 					Params: expression.FuncParams([]*expression.FuncParam{
 						expression.NewFuncParam("datasetRID", expression.StringType),
 					}),
@@ -40,7 +40,7 @@ GetDataset(datasetRID string) (int, error) {
 			name: "function with body",
 			val: &decl.Function{
 				Name: "Add",
-				FunctionType: expression.FuncType{
+				FuncType: expression.FuncType{
 					Params: expression.FuncParams([]*expression.FuncParam{
 						{
 							Names: []string{"x", "y"},

@@ -18,7 +18,7 @@ func TestMethods(t *testing.T) {
 			val: &decl.Method{
 				Function: decl.Function{
 					Name: "GetDataset",
-					FunctionType: expression.FuncType{
+					FuncType: expression.FuncType{
 						Params: expression.FuncParams([]*expression.FuncParam{
 							expression.NewFuncParam("datasetRID", expression.StringType),
 						}),
