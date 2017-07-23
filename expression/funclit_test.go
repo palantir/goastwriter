@@ -17,7 +17,7 @@ func TestFuncLitExpression(t *testing.T) {
 		{
 			name: "simple function literal",
 			val: &expression.FuncLit{
-				Type: expression.FunctionType{},
+				Type: expression.FuncType{},
 			},
 			want: `func() {
 }`,
@@ -25,7 +25,7 @@ func TestFuncLitExpression(t *testing.T) {
 		{
 			name: "function literal with params",
 			val: &expression.FuncLit{
-				Type: expression.FunctionType{
+				Type: expression.FuncType{
 					Params: []*expression.FuncParam{
 						expression.NewFuncParam("foo", expression.StringType),
 					},
@@ -40,7 +40,7 @@ func TestFuncLitExpression(t *testing.T) {
 		{
 			name: "function literal with params and body",
 			val: &expression.FuncLit{
-				Type: expression.FunctionType{
+				Type: expression.FuncType{
 					Params: []*expression.FuncParam{
 						expression.NewFuncParam("foo", expression.StringType),
 					},
