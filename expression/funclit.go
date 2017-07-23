@@ -11,11 +11,11 @@ import (
 )
 
 type FuncLit struct {
-	Type FunctionType
+	Type FuncType
 	Body []astgen.ASTStmt
 }
 
-func NewFuncLit(typ FunctionType, body ...astgen.ASTStmt) *FuncLit {
+func NewFuncLit(typ FuncType, body ...astgen.ASTStmt) *FuncLit {
 	return &FuncLit{
 		Type: typ,
 		Body: body,

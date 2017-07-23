@@ -53,7 +53,7 @@ func TestPackage_Source(t *testing.T) {
 				},
 				&decl.Function{
 					Name: "Bar",
-					FunctionType: expression.FunctionType{
+					FunctionType: expression.FuncType{
 						Params: []*expression.FuncParam{
 							expression.NewFuncParam("input", expression.Type("Foo").Pointer()),
 						},
@@ -133,7 +133,7 @@ func ExampleWrite() {
 		},
 		&decl.Function{
 			Name: "Bar",
-			FunctionType: expression.FunctionType{
+			FunctionType: expression.FuncType{
 				Params: []*expression.FuncParam{
 					expression.NewFuncParam("input", expression.Type("Foo").Pointer()),
 				},

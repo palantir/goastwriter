@@ -14,7 +14,7 @@ import (
 
 type Function struct {
 	Name         string
-	FunctionType expression.FunctionType
+	FunctionType expression.FuncType
 	Body         []astgen.ASTStmt
 	Comment      string
 }

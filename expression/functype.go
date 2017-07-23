@@ -8,12 +8,12 @@ import (
 	"go/ast"
 )
 
-type FunctionType struct {
+type FuncType struct {
 	Params      FuncParams
 	ReturnTypes Types
 }
 
-func (f *FunctionType) ASTExpr() ast.Expr {
+func (f *FuncType) ASTExpr() ast.Expr {
 	return &ast.FuncType{
 		Params:  f.Params.ToFieldList(),
 		Results: f.ReturnTypes.ToFieldList(),
