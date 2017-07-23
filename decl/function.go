@@ -13,10 +13,10 @@ import (
 )
 
 type Function struct {
-	Name         string
-	FunctionType expression.FuncType
-	Body         []astgen.ASTStmt
-	Comment      string
+	Name     string
+	FuncType expression.FuncType
+	Body     []astgen.ASTStmt
+	Comment  string
 }
 
 func (f *Function) ASTDecl() ast.Decl {
@@ -44,7 +44,7 @@ func (f *Function) funcDecl(receiver *ast.Field) *ast.FuncDecl {
 		Doc:  comment.ToComment(f.Comment),
 		Recv: fieldList,
 		Name: ast.NewIdent(f.Name),
-		Type: f.FunctionType.ASTExpr().(*ast.FuncType),
+		Type: f.FuncType.ASTExpr().(*ast.FuncType),
 		Body: body,
 	}
 }
