@@ -8,10 +8,10 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/palantir/goastwriter"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
+	"github.com/palantir/goastwriter"
 	"github.com/palantir/goastwriter/astgen"
 	"github.com/palantir/goastwriter/decl"
 	"github.com/palantir/goastwriter/expression"
