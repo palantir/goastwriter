@@ -16,16 +16,12 @@ type CallExpression struct {
 }
 
 func NewCallFunction(receiver, function string, args ...astgen.ASTExpr) *CallExpression {
-	return NewCallExpression(&Selector{
-		Receiver: VariableVal(receiver),
-		Selector: function,
-	}, args...)
-}
-
-func NewCallExpression(function astgen.ASTExpr, args ...astgen.ASTExpr) *CallExpression {
 	return &CallExpression{
-		Function: function,
-		Args:     args,
+		Function: &Selector{
+			Receiver: VariableVal(receiver),
+			Selector: function,
+		},
+		Args: args,
 	}
 }
 

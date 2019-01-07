@@ -28,16 +28,11 @@ func TestCallExpression(t *testing.T) {
 			want: `strings.HasPrefix(s, "prefix-")`,
 		},
 		{
-			name: "string value expression with convenience selector constructor",
+			name: "string value expression with convenience constructor",
 			val: expression.NewCallFunction("strings", "HasPrefix",
 				expression.VariableVal("s"),
 				expression.StringVal("prefix-")),
 			want: `strings.HasPrefix(s, "prefix-")`,
-		},
-		{
-			name: "string value expression with convenience expression constructor",
-			val:  expression.NewCallExpression(expression.MakeBuiltIn, expression.ByteSliceType, expression.IntVal(10)),
-			want: `make([]byte, 10)`,
 		},
 	})
 }
