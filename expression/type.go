@@ -16,6 +16,7 @@ const (
 	IntType            Type = "int"
 	ErrorType          Type = "error"
 	EmptyInterfaceType Type = "interface{}"
+	ByteSliceType      Type = "[]byte"
 )
 
 // Pointer returns a new type that is a pointer to the current type (prepends a "*").
