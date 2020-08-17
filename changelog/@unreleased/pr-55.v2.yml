@@ -1,0 +1,5 @@
+type: improvement
+improvement:
+  description: Add ellipsis expression
+  links:
+  - https://github.com/palantir/goastwriter/pull/55
