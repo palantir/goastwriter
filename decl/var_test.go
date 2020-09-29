@@ -21,5 +21,22 @@ func TestVars(t *testing.T) {
 			},
 			want: `var sortedKeys []string`,
 		},
+		{
+			name: "var declaration with value",
+			val: &decl.Var{
+				Name:  "key",
+				Type:  "string",
+				Value: expression.StringVal("value"),
+			},
+			want: `var key string = "value"`,
+		},
+		{
+			name: "var declaration with value implied type",
+			val: &decl.Var{
+				Name:  "key",
+				Value: expression.StringVal("value"),
+			},
+			want: `var key = "value"`,
+		},
 	})
 }

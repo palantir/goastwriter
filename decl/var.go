@@ -8,12 +8,14 @@ import (
 	"go/ast"
 	"go/token"
 
+	"github.com/palantir/goastwriter/astgen"
 	"github.com/palantir/goastwriter/expression"
 )
 
 type Var struct {
-	Name string
-	Type expression.Type
+	Name  string
+	Type  expression.Type
+	Value astgen.ASTExpr
 }
 
 func NewVar(name string, typ expression.Type) *Var {
@@ -24,17 +26,17 @@ func NewVar(name string, typ expression.Type) *Var {
 }
 
 func (v *Var) ASTDecl() ast.Decl {
+	valueSpec := &ast.ValueSpec{
+		Names: []*ast.Ident{ast.NewIdent(v.Name)},
+	}
+	if v.Type != "" {
+		valueSpec.Type = v.Type.ToIdent()
+	}
+	if v.Value != nil {
+		valueSpec.Values = []ast.Expr{v.Value.ASTExpr()}
+	}
 	return &ast.GenDecl{
-		Tok: token.VAR,
-		Specs: []ast.Spec{
-			&ast.ValueSpec{
-				Names: []*ast.Ident{
-					ast.NewIdent(v.Name),
-				},
-				Type: &ast.Ident{
-					Name: string(v.Type),
-				},
-			},
-		},
+		Tok:   token.VAR,
+		Specs: []ast.Spec{valueSpec},
 	}
 }
