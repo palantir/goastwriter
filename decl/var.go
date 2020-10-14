@@ -10,12 +10,14 @@ import (
 
 	"github.com/palantir/goastwriter/astgen"
 	"github.com/palantir/goastwriter/expression"
+	"github.com/palantir/goastwriter/spec"
 )
 
 type Var struct {
-	Name  string
-	Type  expression.Type
-	Value astgen.ASTExpr
+	Name   string
+	Type   expression.Type
+	Value  astgen.ASTExpr
+	Values []*spec.Value
 }
 
 func NewVar(name string, typ expression.Type) *Var {
@@ -25,18 +27,41 @@ func NewVar(name string, typ expression.Type) *Var {
 	}
 }
 
+func NewVarWithValues(values ...*spec.Value) *Var {
+	return &Var{
+		Values: values,
+	}
+}
+
 func (v *Var) ASTDecl() ast.Decl {
-	valueSpec := &ast.ValueSpec{
-		Names: []*ast.Ident{ast.NewIdent(v.Name)},
+	var specs []ast.Spec
+
+	if v.Values != nil {
+		for _, val := range v.Values {
+			specs = append(specs, val.ASTSpec())
+		}
+	} else {
+		valueSpec := &ast.ValueSpec{
+			Names: []*ast.Ident{ast.NewIdent(v.Name)},
+		}
+		if v.Type != "" {
+			valueSpec.Type = v.Type.ToIdent()
+		}
+		if v.Value != nil {
+			valueSpec.Values = []ast.Expr{v.Value.ASTExpr()}
+		}
+		specs = []ast.Spec{valueSpec}
 	}
-	if v.Type != "" {
-		valueSpec.Type = v.Type.ToIdent()
-	}
-	if v.Value != nil {
-		valueSpec.Values = []ast.Expr{v.Value.ASTExpr()}
-	}
-	return &ast.GenDecl{
+
+	varDecl := &ast.GenDecl{
 		Tok:   token.VAR,
-		Specs: []ast.Spec{valueSpec},
+		Specs: specs,
 	}
+
+	if len(specs) > 1 {
+		// set Lparen to non-0 value to ensure that parenthesis are rendered
+		varDecl.Lparen = token.Pos(1)
+	}
+
+	return varDecl
 }
