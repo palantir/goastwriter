@@ -10,10 +10,9 @@ import (
 	"go/token"
 	"testing"
 
+	"github.com/palantir/goastwriter/astgen"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-
-	"github.com/palantir/goastwriter/astgen"
 )
 
 type testCase struct {
