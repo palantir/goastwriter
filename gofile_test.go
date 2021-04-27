@@ -8,14 +8,13 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/stretchr/testify/assert"
-	"github.com/stretchr/testify/require"
-
 	"github.com/palantir/goastwriter"
 	"github.com/palantir/goastwriter/astgen"
 	"github.com/palantir/goastwriter/decl"
 	"github.com/palantir/goastwriter/expression"
 	"github.com/palantir/goastwriter/statement"
+	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 )
 
 func TestPackage_Source(t *testing.T) {
