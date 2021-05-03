@@ -46,11 +46,11 @@ func TestVars(t *testing.T) {
 				Values: []*spec.Value{
 					{
 						Names: []string{"var1"},
-						Type:    expression.StringType,
+						Type:  expression.StringType,
 					},
 					{
-						Names:   []string{"var2"},
-						Type:    expression.StringType,
+						Names:  []string{"var2"},
+						Type:   expression.StringType,
 						Values: []astgen.ASTExpr{expression.StringVal("value")},
 					},
 				},
