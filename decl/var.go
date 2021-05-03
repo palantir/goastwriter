@@ -10,6 +10,7 @@ import (
 
 	"github.com/palantir/goastwriter/astgen"
 	"github.com/palantir/goastwriter/expression"
+	"github.com/palantir/goastwriter/spec"
 )
 
 type Var struct {
@@ -39,4 +40,24 @@ func (v *Var) ASTDecl() ast.Decl {
 		Tok:   token.VAR,
 		Specs: []ast.Spec{valueSpec},
 	}
+}
+
+type Vars struct {
+	Values []*spec.Value
+}
+
+func (c *Vars) ASTDecl() ast.Decl {
+	var specs []ast.Spec
+	for _, val := range c.Values {
+		specs = append(specs, val.ASTSpec())
+	}
+	varDecl := &ast.GenDecl{
+		Tok:   token.VAR,
+		Specs: specs,
+	}
+	if len(specs) > 1 {
+		// set Lparen to non-0 value to ensure that parenthesis are rendered
+		varDecl.Lparen = token.Pos(1)
+	}
+	return varDecl
 }
