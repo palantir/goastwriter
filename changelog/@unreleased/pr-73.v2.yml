@@ -1,0 +1,5 @@
+type: improvement
+improvement:
+  description: Add *decl.Vars for multi-variable block
+  links:
+  - https://github.com/palantir/goastwriter/pull/73

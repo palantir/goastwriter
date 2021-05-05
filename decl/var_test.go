@@ -7,8 +7,10 @@ package decl_test
 import (
 	"testing"
 
+	"github.com/palantir/goastwriter/astgen"
 	"github.com/palantir/goastwriter/decl"
 	"github.com/palantir/goastwriter/expression"
+	"github.com/palantir/goastwriter/spec"
 )
 
 func TestVars(t *testing.T) {
@@ -37,6 +39,26 @@ func TestVars(t *testing.T) {
 				Value: expression.StringVal("value"),
 			},
 			want: `var key = "value"`,
+		},
+		{
+			name: "vars declaration with multiple variables",
+			val: &decl.Vars{
+				Values: []*spec.Value{
+					{
+						Names: []string{"var1"},
+						Type:  expression.StringType,
+					},
+					{
+						Names:  []string{"var2"},
+						Type:   expression.StringType,
+						Values: []astgen.ASTExpr{expression.StringVal("value")},
+					},
+				},
+			},
+			want: `var (
+	var1	string
+	var2	string	= "value"
+)`,
 		},
 	})
 }
