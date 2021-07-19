@@ -18,7 +18,7 @@ executors:
   circleci-go:
     docker:
       - image: cimg/go:1.16-browsers
-    working_directory: /home/circleci/go/src/palantir/goastwriter
+    working_directory: /home/circleci/go/src/github.com/palantir/goastwriter
 
 workflows:
   version: 2
