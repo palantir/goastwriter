@@ -1,5 +1,0 @@
-type: improvement
-improvement:
-  description: Add ArrayType expression.
-  links:
-  - https://github.com/palantir/goastwriter/pull/56

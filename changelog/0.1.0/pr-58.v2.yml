@@ -1,5 +1,0 @@
-type: improvement
-improvement:
-  description: Support values in decl.Var
-  links:
-  - https://github.com/palantir/goastwriter/pull/58
