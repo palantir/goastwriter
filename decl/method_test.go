@@ -16,19 +16,17 @@ func TestMethods(t *testing.T) {
 		{
 			name: "simple method",
 			val: &decl.Method{
-				Function: decl.Function{
-					Name: "GetDataset",
-					FuncType: expression.FuncType{
-						Params: expression.FuncParams([]*expression.FuncParam{
-							expression.NewFuncParam("datasetRID", expression.StringType),
-						}),
-						ReturnTypes: expression.Types([]expression.Type{
-							expression.IntType,
-							expression.ErrorType,
-						}),
-					},
-					Comment: "Comment for method",
+				Name: "GetDataset",
+				FuncType: expression.FuncType{
+					Params: expression.FuncParams([]*expression.FuncParam{
+						expression.NewFuncParam("datasetRID", expression.StringType),
+					}),
+					ReturnTypes: expression.Types([]expression.Type{
+						expression.IntType,
+						expression.ErrorType,
+					}),
 				},
+				Comment:      "Comment for method",
 				ReceiverName: "c",
 				ReceiverType: expression.Type("*serviceClient"),
 			},
