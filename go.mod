@@ -2,7 +2,7 @@ module github.com/palantir/goastwriter
 
 go 1.27.0
 
-toolchain go1.27.1
+toolchain go1.27.3
 
 require github.com/stretchr/testify v1.12.1
 
